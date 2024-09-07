@@ -2,6 +2,6 @@
 
 ## font used >>> Google Font
 
-## Icon Used >>> Bootsrap Icon
+## Icon Used >>> Font Awesome Icon
 
 ### [Tutorial Followed](https://youtu.be/atKtG29iroY?si=k29lFX2STBsEQnf7)

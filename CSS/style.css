@@ -6,12 +6,26 @@
 }
 
 :root {
-  --text-color: #ffff;
+  --outgoing-text-color: #08000e;
+  --incoming-text-color: #ffff;
   --icon-color: #ce7efd;
   --icon-hover-bg: #bd4bff;
   --placholder-color: #cccccc;
-  --outgoing-chat-bg: #9e07f5;
-  --incoming-chat-bg: #cccccc;
-  --incoming-chat-border: #373538;
-  --outgoing-chat-border: #390153;
+  --incoming-chat-bg: #9e07f5;
+  --outgoing-chat-bg: #cccccc;
+  --incoming-chat-border: #390153;
+  --outgoing-chat-border: #373538;
+}
+body {
+  background: var(--outgoing-chat-bg);
+}
+
+/*CHAT CONTAINER STYLING*/
+.chat-container .chat {
+  color: var(--outgoing-text-color);
+}
+
+.chat .chat-details img {
+  width: 35px;
+  height: 35px;
 }
