@@ -111,6 +111,7 @@ body {
   outline: 1px solid var(--outgoing-chat-border);
 }
 
+<<<<<<< HEAD
 .typing-textarea textarea::placeholder {
   color: var(--placholder-color);
 }
@@ -124,6 +125,8 @@ body {
 .typing-textarea textarea:valid ~ i {
   visibility: visible;
 }
+=======
+>>>>>>> 183a13189105db0d06196c04515eb81ad41a1fe1
 .typing-content i {
   height: 50px;
   width: 55px;
