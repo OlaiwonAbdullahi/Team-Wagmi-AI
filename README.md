@@ -4,4 +4,4 @@
 
 ## Icon Used >>> Bootsrap Icon
 
-### [Tutorial Followed]("https://youtu.be/atKtG29iroY?si=k29lFX2STBsEQnf7")
+### [Tutorial Followed](https://youtu.be/atKtG29iroY?si=k29lFX2STBsEQnf7)
