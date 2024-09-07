@@ -7,4 +7,11 @@
 
 :root {
   --text-color: #ffff;
+  --icon-color: #ce7efd;
+  --icon-hover-bg: #bd4bff;
+  --placholder-color: #cccccc;
+  --outgoing-chat-bg: #9e07f5;
+  --incoming-chat-bg: #cccccc;
+  --incoming-chat-border: #373538;
+  --outgoing-chat-border: #390153;
 }
