@@ -75,3 +75,20 @@ body {
   user-select: none;
   cursor: pointer;
 }
+
+.typing-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--outgoing-chat-bg);
+  border: 1px solid var(--incoming-chat-border);
+}
+.typing-container .typing-content {
+  max-width: 950px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+.typing-content;
