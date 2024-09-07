@@ -8,7 +8,7 @@
 :root {
   --outgoing-text-color: #08000e;
   --incoming-text-color: #ffff;
-  --icon-color: #ce7efd;
+  --icon-color: #c05dfa;
   --icon-hover-bg: #bd4bff;
   --placholder-color: #cccccc;
   --incoming-chat-bg: #9e07f5;
@@ -28,18 +28,28 @@ body {
   color: var(--outgoing-text-color);
 }
 
-.chat-container.chat .outgoing {
+.chat-container .outgoing {
   background: var(--outgoing-chat-bg);
   border: 1px solid var(--outgoing-chat-border);
   color: var(--outgoing-text-color);
 }
 
-.chat-container.chat .incoming {
+.chat .chat-content .fa-clipboard {
+  font-size: 1.3rem;
+  color: var(--icon-color);
+  visibility: hidden;
+}
+.chat:hover .chat-content i {
+  visibility: visible;
+}
+.chat-container .incoming {
   background: var(--incoming-chat-bg);
-  border: 1px solid var(--incoming-chat-border);
+
   color: var(--incoming-text-color);
 }
 .chat .chat-content {
+  max-width: 1200px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -49,8 +59,19 @@ body {
   align-items: center;
 }
 .chat .chat-details img {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
   border-radius: 2px;
+}
+
+.chat .chat-details p {
+  white-space: pre-wrap;
+  font-size: 1.05rem;
+  padding: 0 50px 0 25px;
+}
+
+.fa-clipboard {
+  user-select: none;
+  cursor: pointer;
 }
