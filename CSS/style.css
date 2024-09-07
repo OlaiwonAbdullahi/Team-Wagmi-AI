@@ -22,10 +22,35 @@ body {
 
 /*CHAT CONTAINER STYLING*/
 .chat-container .chat {
+  padding: 25px 10px;
+  display: flex;
+  justify-content: center;
   color: var(--outgoing-text-color);
 }
 
+.chat-container.chat .outgoing {
+  background: var(--outgoing-chat-bg);
+  border: 1px solid var(--outgoing-chat-border);
+  color: var(--outgoing-text-color);
+}
+
+.chat-container.chat .incoming {
+  background: var(--incoming-chat-bg);
+  border: 1px solid var(--incoming-chat-border);
+  color: var(--incoming-text-color);
+}
+.chat .chat-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chat .chat-details {
+  display: flex;
+  align-items: center;
+}
 .chat .chat-details img {
   width: 35px;
   height: 35px;
+  object-fit: cover;
+  border-radius: 2px;
 }
