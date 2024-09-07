@@ -16,6 +16,17 @@
   --incoming-chat-border: #390153;
   --outgoing-chat-border: #373538;
 }
+.dark-mode {
+  --outgoing-text-color: #c05dfa;
+  --incoming-text-color: #ffff;
+  --icon-color: #08000e;
+  --icon-hover-bg: #390363;
+  --placholder-color: #08000e;
+  --incoming-chat-bg: #390258;
+  --outgoing-chat-bg: #373538;
+  --incoming-chat-border: #390153;
+  --outgoing-chat-border: #cccccc;
+}
 body {
   background: var(--outgoing-chat-bg);
 }
@@ -128,7 +139,7 @@ body {
   outline: 1px solid var(--outgoing-chat-border);
 }
 
-<<<<<<< HEAD .typing-textarea textarea::placeholder {
+.typing-textarea textarea::placeholder {
   color: var(--placholder-color);
 }
 
