@@ -6,6 +6,8 @@ const chatContainer = document.querySelector(".chat-container");
 
 let userText = null;
 
+const API_KEY = "";
+
 const createElement = (html, className) => {
     // Create new div and apply chat, specified class and set html content of div
 
@@ -13,6 +15,44 @@ const createElement = (html, className) => {
     chatDiv.classList.add("chat", className);
     chatDiv.innerHTML = html;
     return chatDiv; //Return the created chat div
+}
+
+
+const getChatResponse = async () => {
+    const API_URL = "https://api.openai.com/v1/completions";
+
+
+
+    // Defines the properties and data for the API request
+
+    const requestOptions = {
+
+        method: "POST",
+
+        headers: {
+
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${"API_KEY"}`
+
+        },
+
+        body: JSON.stringify({
+            model: "text-davinci-003",
+            prompt: userText,
+            max_tokens: 2048,
+            temperature: 0.2,
+            n: 1,
+            stop: null
+        })
+
+    }
+
+    try {
+        const response = await (await fetch(API_URL, requestOptions)).json();
+        console.log(response)
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const showTypingAnimation = () => {
@@ -34,6 +74,7 @@ const showTypingAnimation = () => {
     // Create an outgoing chat div with user's message and appends it to the chat container
     const outgoingChatDiv = createElement(html, "incoming");
     chatContainer.appendChild(outgoingChatDiv);
+    getChatResponse();
 }
 
 const handleOutgoingChat = () => {

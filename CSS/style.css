@@ -171,3 +171,37 @@ body {
   background-color: var(--outgoing-chat-bg);
   border: 1px solid var(--incoming-chat-border);
 }
+.typing-animation {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.typing-animation {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  animation: bounce 1s infinite ease-in-out;
+  animation-delay: var(--delay);
+}
+
+/* Keyframes for bouncing and fading effect */
+@keyframes bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 1; /* Full opacity when not moving */
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 0.5; /* Fading out while moving up */
+  }
+}
