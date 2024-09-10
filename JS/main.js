@@ -21,24 +21,29 @@ const getChatResponse = async () => {
       Accept: "application/json",
       "Content-Type": "application/json",
       "x-rapidapi-ua": "RapidAPI-Playground",
-      "x-rapidapi-key": "b8ef490beemshc78108332381208p1cc891jsn167f1fd3a95e", // Inject your API key here
+      "x-rapidapi-key": API_KEY, // Inject your API key here
       "x-rapidapi-host": "chatgpt-42.p.rapidapi.com",
     },
     body: JSON.stringify({
-      prompt: userText,
-      max_tokens: 256,
+      messages: [
+        {
+          role: "user",
+          content: userText,
+        },
+      ],
+      system_prompt: "",
       temperature: 0.9,
-      n: 1,
-      stop: null,
       top_k: 5,
       top_p: 0.9,
+      max_tokens: 256,
       web_access: false,
     }),
   };
 
   try {
     const response = await (await fetch(API_URL, requestOptions)).json();
-    const botResponse = response.choices[0]?.text.trim();
+    const botResponse = response.messages[0]?.content.trim();
+
     const botHtml = `<div class="chat-content">
                             <div class="chat-details">
                                 <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
