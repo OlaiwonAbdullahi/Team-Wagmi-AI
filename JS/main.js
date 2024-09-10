@@ -21,7 +21,7 @@ const getChatResponse = async () => {
       Accept: "application/json",
       "Content-Type": "application/json",
       "x-rapidapi-ua": "RapidAPI-Playground",
-      "x-rapidapi-key": API_KEY, // Inject your API key here
+      "x-rapidapi-key": "b8ef490beemshc78108332381208p1cc891jsn167f1fd3a95e", // Inject your API key here
       "x-rapidapi-host": "chatgpt-42.p.rapidapi.com",
     },
     body: JSON.stringify({
