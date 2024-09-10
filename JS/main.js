@@ -3,8 +3,10 @@ const sendButton = document.querySelector("#chat-icon");
 const chatContainer = document.querySelector(".chat-container");
 
 let userText = null;
-const API_KEY = "b8ef490beemshc78108332381208p1cc891jsn167f1fd3a95e"; // Secure this in a backend!
+const API_KEY =
+  "YOUR_API_KEY"; // Insert your OpenAI API key here
 
+// Function to create a chat element
 const createElement = (html, className) => {
   const chatDiv = document.createElement("div");
   chatDiv.classList.add("chat", className);
@@ -12,54 +14,48 @@ const createElement = (html, className) => {
   return chatDiv;
 };
 
+// Function to get chat response from OpenAI
 const getChatResponse = async () => {
-  const API_URL = "https://chatgpt-42.p.rapidapi.com/conversationgpt4-2";
+  const API_URL = "https://api.openai.com/v1/chat/completions";
 
+  // Defines the properties and data for the API request
   const requestOptions = {
     method: "POST",
     headers: {
-      Accept: "application/json",
       "Content-Type": "application/json",
-      "x-rapidapi-ua": "RapidAPI-Playground",
-      "x-rapidapi-key": API_KEY, // Inject your API key here
-      "x-rapidapi-host": "chatgpt-42.p.rapidapi.com",
+      Authorization: `Bearer ${API_KEY}`,
     },
     body: JSON.stringify({
+      model: "gpt-4", // Use the model specified
       messages: [
+        {
+          role: "system",
+          content: "You are a helpful assistant.",
+        },
         {
           role: "user",
           content: userText,
         },
       ],
-      system_prompt: "",
-      temperature: 0.9,
-      top_k: 5,
-      top_p: 0.9,
-      max_tokens: 256,
-      web_access: false,
+      max_tokens: 2048,
+      temperature: 0.2,
+      n: 1,
+      stop: null,
     }),
   };
 
   try {
-    const response = await fetch(API_URL, requestOptions);
-    const data = await response.json();
+    const response = await (await fetch(API_URL, requestOptions)).json();
 
-    // Check if there's a valid response and a message from the chatbot
-    if (data && data.messages && data.messages[0]) {
-      const botResponse = data.messages[0].content.trim();
-
-      // Create the chatbot response element
-      const botHtml = `<div class="chat-content">
-                            <div class="chat-details">
-                                <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
-                                <p>${botResponse}</p>
-                            </div>
-                         </div>`;
-      const incomingChatDiv = createElement(botHtml, "incoming");
-      chatContainer.appendChild(incomingChatDiv);
-    } else {
-      throw new Error("Invalid response from the API.");
-    }
+    const botResponse = response.choices[0]?.message.content.trim();
+    const botHtml = `<div class="chat-content">
+                          <div class="chat-details">
+                              <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
+                              <p>${botResponse}</p>
+                          </div>
+                       </div>`;
+    const incomingChatDiv = createElement(botHtml, "incoming");
+    chatContainer.appendChild(incomingChatDiv);
   } catch (error) {
     console.error(error);
     const errorMessage = createElement(
@@ -70,36 +66,41 @@ const getChatResponse = async () => {
   }
 };
 
+// Function to show typing animation
 const showTypingAnimation = () => {
   const html = `<div class="chat-content">
-                    <div class="chat-details">
-                      <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
-                      <div class="typing-animation">
-                        <div class="typing-dot" style="--delay: 0.2s"></div>
-                        <div class="typing-dot" style="--delay: 0.3s"></div>
-                        <div class="typing-dot" style="--delay: 0.4s"></div>
-                      </div>
+                  <div class="chat-details">
+                    <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
+                    <div class="typing-animation">
+                      <div class="typing-dot" style="--delay: 0.2s"></div>
+                      <div class="typing-dot" style="--delay: 0.3s"></div>
+                      <div class="typing-dot" style="--delay: 0.4s"></div>
                     </div>
-                  </div>`;
+                  </div>
+                </div>`;
   const typingChatDiv = createElement(html, "incoming");
   chatContainer.appendChild(typingChatDiv);
   getChatResponse();
 };
 
+// Function to handle user input and outgoing chat
 const handleOutgoingChat = () => {
-  userText = chatInput.value.trim();
+  userText = chatInput.value.trim(); // Get chatInput value and removes extra spaces
   if (!userText) return;
 
   const html = `<div class="chat-content">
-                    <div class="chat-details">
-                      <img src="./assets/user-regular.svg" alt="" />
-                      <p>${userText}</p>
-                    </div>
-                  </div>`;
+                  <div class="chat-details">
+                    <img src="./assets/user-regular.svg" alt="user-icon" />
+                    <p>${userText}</p>
+                  </div>
+                </div>`;
+
+  // Create an outgoing chat div with user's message and appends it to the chat container
   const outgoingChatDiv = createElement(html, "outgoing");
   chatContainer.appendChild(outgoingChatDiv);
-  chatInput.value = ""; // Clear the input field
-  setTimeout(showTypingAnimation, 500);
+  chatInput.value = ""; // Clear input field after sending
+  setTimeout(showTypingAnimation, 500); // Show typing animation before fetching the bot's response
 };
 
+// Event listener to handle chat on button click
 sendButton.addEventListener("click", handleOutgoingChat);
