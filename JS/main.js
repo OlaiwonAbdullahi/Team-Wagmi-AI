@@ -41,17 +41,25 @@ const getChatResponse = async () => {
   };
 
   try {
-    const response = await (await fetch(API_URL, requestOptions)).json();
-    const botResponse = response.messages[0]?.content.trim();
+    const response = await fetch(API_URL, requestOptions);
+    const data = await response.json();
 
-    const botHtml = `<div class="chat-content">
+    // Check if there's a valid response and a message from the chatbot
+    if (data && data.messages && data.messages[0]) {
+      const botResponse = data.messages[0].content.trim();
+
+      // Create the chatbot response element
+      const botHtml = `<div class="chat-content">
                             <div class="chat-details">
                                 <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
                                 <p>${botResponse}</p>
                             </div>
                          </div>`;
-    const incomingChatDiv = createElement(botHtml, "incoming");
-    chatContainer.appendChild(incomingChatDiv);
+      const incomingChatDiv = createElement(botHtml, "incoming");
+      chatContainer.appendChild(incomingChatDiv);
+    } else {
+      throw new Error("Invalid response from the API.");
+    }
   } catch (error) {
     console.error(error);
     const errorMessage = createElement(
