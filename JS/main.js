@@ -70,7 +70,7 @@ const getChatResponse = async () => {
   }
 };
 
-const showTypingAnimation = () => {
+/*const showTypingAnimation = () => {
   const html = `<div class="chat-content">
                     <div class="chat-details">
                       <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
@@ -85,7 +85,7 @@ const showTypingAnimation = () => {
   chatContainer.appendChild(typingChatDiv);
   getChatResponse();
 };
-
+*/
 const handleOutgoingChat = () => {
   userText = chatInput.value.trim();
   if (!userText) return;
