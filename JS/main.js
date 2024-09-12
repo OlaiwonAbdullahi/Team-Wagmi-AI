@@ -37,6 +37,11 @@ const getChatResponse = async () => {
       data?.candidates[0].content.parts[0].text ||
       "Sorry, I couldn't get a response.";
 
+    const typingAnimationDiv = document.querySelector(".typing-animation");
+    if (typingAnimationDiv) {
+      typingAnimationDiv.remove();
+    }
+
     // Create bot's chat message and append to chat container
     const botHtml = `<div class="chat-content">
                           <div class="chat-details">
