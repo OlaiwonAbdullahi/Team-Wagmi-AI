@@ -10,7 +10,7 @@ delete_btn.onclick = () => {
   window.location.reload();
 };
 dark_mode.onclick = () => {
-  body.classList.add("dark-mode");
+  body.classList.toggle("dark-mode");
 };
 
 const API_KEY = "AIzaSyBK3_FJ8YctWNWQm0kiUERPJ81qnLYkAto"; // Insert your actual API key here
