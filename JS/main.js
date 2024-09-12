@@ -1,12 +1,14 @@
+const { text } = require("@fortawesome/fontawesome-svg-core");
+
 const chatInput = document.querySelector("#chat-input");
 const sendButton = document.querySelector("#chat-icon");
 const chatContainer = document.querySelector(".chat-container");
 
 let userText = null;
-const API_KEY =
-  "YOUR_API_KEY"; // Insert your OpenAI API key here
 
-// Function to create a chat element
+const API_KEY = "AIzaSyBK3_FJ8YctWNWQm0kiUERPJ81qnLYkAto"; // Replace with your actual API key
+const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
+
 const createElement = (html, className) => {
   const chatDiv = document.createElement("div");
   chatDiv.classList.add("chat", className);
@@ -16,38 +18,26 @@ const createElement = (html, className) => {
 
 // Function to get chat response from OpenAI
 const getChatResponse = async () => {
-  const API_URL = "https://api.openai.com/v1/chat/completions";
-
-  // Defines the properties and data for the API request
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: "gpt-4", // Use the model specified
-      messages: [
-        {
-          role: "system",
-          content: "You are a helpful assistant.",
-        },
-        {
-          role: "user",
-          content: userText,
-        },
-      ],
-      max_tokens: 2048,
-      temperature: 0.2,
-      n: 1,
-      stop: null,
-    }),
-  };
-
   try {
-    const response = await (await fetch(API_URL, requestOptions)).json();
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: userText }],
+          },
+        ],
+      }),
+    });
+    const data = await response.json();
+    const apiResponse = data?.candidate[0]?.content?.parts[0]?.text; // Ensure proper response structure
 
-    const botResponse = response.choices[0]?.message.content.trim();
+    const botResponse = apiResponse || "Sorry, I didn't understand that."; // Handle missing responses
+
     const botHtml = `<div class="chat-content">
                           <div class="chat-details">
                               <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
@@ -57,12 +47,7 @@ const getChatResponse = async () => {
     const incomingChatDiv = createElement(botHtml, "incoming");
     chatContainer.appendChild(incomingChatDiv);
   } catch (error) {
-    console.error(error);
-    const errorMessage = createElement(
-      "Something went wrong. Please try again later.",
-      "error"
-    );
-    chatContainer.appendChild(errorMessage);
+    console.log(error);
   }
 };
 
@@ -95,7 +80,7 @@ const handleOutgoingChat = () => {
                   </div>
                 </div>`;
 
-  // Create an outgoing chat div with user's message and appends it to the chat container
+  // Create an outgoing chat div with user's message and append it to the chat container
   const outgoingChatDiv = createElement(html, "outgoing");
   chatContainer.appendChild(outgoingChatDiv);
   chatInput.value = ""; // Clear input field after sending
