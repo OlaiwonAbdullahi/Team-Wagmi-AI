@@ -54,7 +54,7 @@ const getChatResponse = async () => {
 
     const botHtml = `<div class="chat-content">
                           <div class="chat-details">
-                              <i class="fa-regular fa-user" style="color: #8c00ff; font-size: 45px;"></i>
+                              <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
                               <p>${apiResponse}</p>
                           </div>
                        </div>`;
@@ -68,7 +68,7 @@ const getChatResponse = async () => {
 const showTypingAnimation = () => {
   const html = `<div class="chat-content typing-animation-container">
                   <div class="chat-details">
-                    <i class="fa-regular fa-user" style="color: #8c00ff; font-size: 45px;"></i>
+                    <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
                     <div class="typing-animation">
                       <div class="typing-dot" style="--delay: 0.2s"></div>
                       <div class="typing-dot" style="--delay: 0.3s"></div>
@@ -87,7 +87,7 @@ const handleOutgoingChat = () => {
 
   const html = `<div class="chat-content">
                   <div class="chat-details">
-                    <img src="./assets/user-regular.svg" alt="user-icon" />
+                       <i class="fa-regular fa-user" style="color: #8c00ff; font-size: 45px;"></i>
                     <p>${userText}</p>
                   </div>
                 </div>`;
