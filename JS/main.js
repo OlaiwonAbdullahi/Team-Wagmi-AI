@@ -1,8 +1,17 @@
 const chatInput = document.querySelector("#chat-input");
 const sendButton = document.querySelector("#chat-icon");
 const chatContainer = document.querySelector(".chat-container");
+const delete_btn = delete_btn.querySelector(".typing-controls .delete_btn");
+const dark_mode = dark_mode.querySelector(".typing-controls .dark_mode");
 
 let userText = null;
+
+delete_btn.onclick = () => {
+  window.location.reload();
+};
+dark_mode.onclick = () => {
+  body.classList.add("dark-mode");
+};
 
 const API_KEY = "AIzaSyBK3_FJ8YctWNWQm0kiUERPJ81qnLYkAto"; // Insert your actual API key here
 const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
