@@ -1,12 +1,10 @@
-const { text } = require("@fortawesome/fontawesome-svg-core");
-
 const chatInput = document.querySelector("#chat-input");
 const sendButton = document.querySelector("#chat-icon");
 const chatContainer = document.querySelector(".chat-container");
 
 let userText = null;
 
-const API_KEY = "AIzaSyBK3_FJ8YctWNWQm0kiUERPJ81qnLYkAto"; // Replace with your actual API key
+const API_KEY = "AIzaSyBK3_FJ8YctWNWQm0kiUERPJ81qnLYkAto"; // Insert your actual API key here
 const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
 
 const createElement = (html, className) => {
@@ -16,7 +14,7 @@ const createElement = (html, className) => {
   return chatDiv;
 };
 
-// Function to get chat response from OpenAI
+// Function to get chat response from API
 const getChatResponse = async () => {
   try {
     const response = await fetch(API_URL, {
@@ -34,14 +32,15 @@ const getChatResponse = async () => {
       }),
     });
     const data = await response.json();
-    const apiResponse = data?.candidate[0]?.content?.parts[0]?.text; // Ensure proper response structure
+    const apiResponse =
+      data?.candidate[0].content.parts[0].text ||
+      "Sorry, I couldn't get a response.";
 
-    const botResponse = apiResponse || "Sorry, I didn't understand that."; // Handle missing responses
-
+    // Create bot's chat message and append to chat container
     const botHtml = `<div class="chat-content">
                           <div class="chat-details">
                               <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
-                              <p>${botResponse}</p>
+                              <p>${apiResponse}</p>
                           </div>
                        </div>`;
     const incomingChatDiv = createElement(botHtml, "incoming");
@@ -71,6 +70,7 @@ const showTypingAnimation = () => {
 // Function to handle user input and outgoing chat
 const handleOutgoingChat = () => {
   userText = chatInput.value.trim(); // Get chatInput value and removes extra spaces
+  if (!userText) return;
 
   const html = `<div class="chat-content">
                   <div class="chat-details">
@@ -79,7 +79,7 @@ const handleOutgoingChat = () => {
                   </div>
                 </div>`;
 
-  // Create an outgoing chat div with user's message and append it to the chat container
+  // Create an outgoing chat div with user's message and appends it to the chat container
   const outgoingChatDiv = createElement(html, "outgoing");
   chatContainer.appendChild(outgoingChatDiv);
   chatInput.value = ""; // Clear input field after sending
