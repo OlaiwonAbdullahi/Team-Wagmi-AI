@@ -13,7 +13,7 @@ dark_mode.onclick = () => {
   body.classList.toggle("dark-mode");
 };
 
-const API_KEY = "AIzaSyBK3_FJ8YctWNWQm0kiUERPJ81qnLYkAto"; // Insert your actual API key here
+const API_KEY = "AIzaSyBK3_FJ8YctWNWQm0kiUERPJ81qnLYkAto";
 const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
 
 const createElement = (html, className) => {
@@ -23,7 +23,6 @@ const createElement = (html, className) => {
   return chatDiv;
 };
 
-// Function to get chat response from API
 const getChatResponse = async () => {
   try {
     const response = await fetch(API_URL, {
@@ -53,7 +52,6 @@ const getChatResponse = async () => {
       typingAnimationDiv.remove();
     }
 
-    // Create bot's chat message and append to chat container
     const botHtml = `<div class="chat-content">
                           <div class="chat-details">
                               <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
@@ -67,7 +65,6 @@ const getChatResponse = async () => {
   }
 };
 
-// Function to show typing animation
 const showTypingAnimation = () => {
   const html = `<div class="chat-content typing-animation-container">
                   <div class="chat-details">
@@ -84,9 +81,8 @@ const showTypingAnimation = () => {
   getChatResponse();
 };
 
-// Function to handle user input and outgoing chat
 const handleOutgoingChat = () => {
-  userText = chatInput.value.trim(); // Get chatInput value and removes extra spaces
+  userText = chatInput.value.trim();
   if (!userText) return;
 
   const html = `<div class="chat-content">
@@ -96,12 +92,10 @@ const handleOutgoingChat = () => {
                   </div>
                 </div>`;
 
-  // Create an outgoing chat div with user's message and appends it to the chat container
   const outgoingChatDiv = createElement(html, "outgoing");
   chatContainer.appendChild(outgoingChatDiv);
-  chatInput.value = ""; // Clear input field after sending
-  setTimeout(showTypingAnimation, 500); // Show typing animation before fetching the bot's response
+  chatInput.value = "";
+  setTimeout(showTypingAnimation, 500);
 };
 
-// Event listener to handle chat on button click
 sendButton.addEventListener("click", handleOutgoingChat);
