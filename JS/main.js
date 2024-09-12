@@ -34,7 +34,7 @@ const getChatResponse = async () => {
     const data = await response.json();
     console.log("API Response:", data);
     const apiResponse =
-      data?.candidate[0].content.parts[0].text ||
+      data?.candidates[0].content.parts[0].text ||
       "Sorry, I couldn't get a response.";
 
     // Create bot's chat message and append to chat container
