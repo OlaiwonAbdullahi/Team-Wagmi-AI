@@ -25,7 +25,7 @@
   --incoming-chat-bg: #390258;
   --outgoing-chat-bg: #373538;
   --incoming-chat-border: #390153;
-  --outgoing-chat-border: #cccccc;
+  --outgoing-chat-border: #373538;
 }
 body {
   background: var(--outgoing-chat-bg);
