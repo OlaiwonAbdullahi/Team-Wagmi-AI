@@ -71,7 +71,6 @@ const showTypingAnimation = () => {
 // Function to handle user input and outgoing chat
 const handleOutgoingChat = () => {
   userText = chatInput.value.trim(); // Get chatInput value and removes extra spaces
-  if (!userText) return;
 
   const html = `<div class="chat-content">
                   <div class="chat-details">
