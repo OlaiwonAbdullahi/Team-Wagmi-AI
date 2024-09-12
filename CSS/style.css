@@ -27,6 +27,15 @@
   --incoming-chat-border: #390153;
   --outgoing-chat-border: #373538;
 }
+.header {
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  background-color: var(--out) going-chat-bg;
+}
+.header h2 {
+  color: var(--incoming-chat-bg);
+}
 body {
   background: var(--outgoing-chat-bg);
 }
