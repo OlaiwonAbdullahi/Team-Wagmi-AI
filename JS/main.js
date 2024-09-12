@@ -1,9 +1,9 @@
 const chatInput = document.querySelector("#chat-input");
 const sendButton = document.querySelector("#chat-icon");
 const chatContainer = document.querySelector(".chat-container");
-const delete_btn = delete_btn.querySelector(".typing-controls .delete_btn");
-const dark_mode = dark_mode.querySelector(".typing-controls .dark_mode");
-
+const delete_btn = document.querySelector(".typing-controls .delete_btn");
+const dark_mode = document.querySelector(".typing-controls .dark_mode");
+const body = document.body;
 let userText = null;
 
 delete_btn.onclick = () => {
