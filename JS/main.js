@@ -37,7 +37,9 @@ const getChatResponse = async () => {
       data?.candidates[0].content.parts[0].text ||
       "Sorry, I couldn't get a response.";
 
-    const typingAnimationDiv = document.querySelector(".typing-animation");
+    const typingAnimationDiv = document.querySelector(
+      ".typing-animation-container"
+    );
     if (typingAnimationDiv) {
       typingAnimationDiv.remove();
     }
@@ -58,7 +60,7 @@ const getChatResponse = async () => {
 
 // Function to show typing animation
 const showTypingAnimation = () => {
-  const html = `<div class="chat-content">
+  const html = `<div class="chat-content typing-animation-container">
                   <div class="chat-details">
                     <img src="./assets/Wagmi-AI.png" alt="chatbot-img" />
                     <div class="typing-animation">
