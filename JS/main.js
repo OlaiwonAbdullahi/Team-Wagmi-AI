@@ -18,7 +18,7 @@ dark_mode.onclick = () => {
 };
 
 // API key and endpoint
-const API_KEY = "AIzaSyCkDBe45cvin-IqgDkHrSRczc7DKabRPEo";
+const API_KEY = "AIzaSyBMbfCKf_bpdtIMu2ich78rX71loxc9kPU";
 const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
 
 // Helper function to create chat elements
