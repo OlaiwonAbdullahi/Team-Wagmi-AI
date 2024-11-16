@@ -13,7 +13,7 @@ dark_mode.onclick = () => {
   body.classList.toggle("dark-mode");
 };
 
-const API_KEY = "AIzaSyBK3_FJ8YctWNWQm0kiUERPJ81qnLYkAto";
+const API_KEY = "AIzaSyCkDBe45cvin-IqgDkHrSRczc7DKabRPEo";
 const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
 
 const createElement = (html, className) => {
